@@ -1,4 +1,4 @@
-name: lacework-iac-example-gha
+name: lacework-iac-example-ga
 
 # Controls when the workflow will run
 
@@ -45,7 +45,7 @@ jobs:
         run: |
 
              # Required to pass the GITHUB and Lacework (LW) environment secrets to use
-             
+
              env | grep "GITHUB_\|LW_\|CI_" > env.list
 
              # Required command based on what you want to scan in the repository
