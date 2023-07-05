@@ -45,6 +45,8 @@ jobs:
         run: |
 
              # Required to pass the GITHUB and Lacework (LW) environment secrets to use
+             
+             env | grep "LW_\|CI_" > env.list
 
              # Required command based on what you want to scan in the repository
 
