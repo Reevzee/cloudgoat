@@ -24,3 +24,6 @@ jobs:
         IMAGE_NAME: my-lgtest-image
         IMAGE_TAG: latest
         SAVE_RESULTS_IN_LACEWORK: true
+      env: 
+        LW_ACCOUNT_NAME: ${{ secrets.LW_ACCOUNT_NAME }}
+        LW_ACCESS_TOKEN: ${{ secrets.LW_ACCESS_TOKEN }}
