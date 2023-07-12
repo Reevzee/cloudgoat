@@ -1,0 +1,30 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag my-LGtest-image:latest
+      - uses: lacework/lw-scanner-action@v1.2.0
+        name: Scan container images for vulnerabitilies using Lacework
+        with:
+          LW_ACCOUNT_NAME: ${{ secrets.LW_ACCOUNT_NAME }}
+          LW_ACCESS_TOKEN: ${{ secrets.LW_ACCESS_TOKEN }}
+          IMAGE_NAME: my-LGtest-image
+          IMAGE_TAG: latest
+          SAVE_RESULTS_IN_LACEWORK: true
+          SAVE_BUILD_REPORT: true
+          BUILD_REPORT_FILE_NAME: myreport.html
+        env:
+          JAVA_OFFLINE_MODE: true
